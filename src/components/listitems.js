@@ -14,12 +14,12 @@ import { NavLink } from 'react-router-dom';
 
 export const mainListItems = (
   <div>
-    <ListItem button component={NavLink} to='/dashboard'>
+    {/* <ListItem button component={NavLink} to='/dashboard'>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
-    </ListItem>
+    </ListItem> */}
     <ListItem button component={NavLink} to='/Countries'>
       <ListItemIcon>
         <PublicIcon />
@@ -41,7 +41,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="About Us" />
+      <ListItemText primary="About Us Pakai Styled" />
     </ListItem>
   </div>
 );

@@ -9,7 +9,7 @@ border-radius: 10px;
 box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 color: #B3B8CD;
 position: auto;
-width: 95%;
+width: 90%;
 margin: auto;
 margin-top: 70px;
 min-height: 400px;

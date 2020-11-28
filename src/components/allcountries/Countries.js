@@ -82,7 +82,7 @@ const Countries = () => {
 					<input
 						type='text'
 						onInput={handleInput}
-						placeholder='Search for a country...'
+						placeholder='Cari Sebuah Negara...'
 					/>
 				</div>
 
