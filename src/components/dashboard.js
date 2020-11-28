@@ -176,7 +176,9 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="xl" className={classes.container}>
-
+        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+        Masih kosong lur, cek bagian semua negara, ini nanti buat TA
+          </Typography>
         <Switch>
           <Route path="/Countries" component={Countries} />
           <Route path="/Country/:alpha2Code" component={CountryDetail} />
