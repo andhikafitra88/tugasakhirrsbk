@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Fade from 'react-reveal/Fade';
 import { FilterDropdown } from './utils';
 import { Country } from '.';
+import StyledInput from '../element/textinput';
 import axios from 'axios';
+
 
 const regions = [
 	{
@@ -39,10 +41,9 @@ const CountriesStyled = () => {
 			);
 
 			let filterData = axiosCountries.data.filter((country) => {
-				return country.name;
+				return country.name !== 'United States Minor Outlying Islands';
 			});
 
-			localStorage.setItem('countries', JSON.stringify(filterData));
 
 			filterData.sort((a, b) => {
 				return a - b;
@@ -50,15 +51,9 @@ const CountriesStyled = () => {
 			setCountries((countries) => countries.concat(filterData));
 		};
 
-		if (localStorage.countries) {
-			console.log('From local storage');
-			setCountries((countries) =>
-				countries.concat(JSON.parse(localStorage.getItem('countries')))
-			);
-		} else {
-			console.log('Fetch data and save on local storage');
+
 			fetchData();
-		}
+		
 	}, []);
 
 	const handleInput = (e) => {
@@ -76,22 +71,10 @@ const CountriesStyled = () => {
 	return (
 		<div className='home'>
 			<div className='home__row stack'>
-				<div className='home__search'>
-					<ion-icon name='search-outline'></ion-icon>
-					<input
-						type='text'
-						onInput={handleInput}
-						placeholder='Cari Sebuah Negara...'
-					/>
-				</div>
-
-				<FilterDropdown
-					title={title}
-					items={regions}
-					onSelectRegion={handleRegion}
-					onSelectTitle={handleTitle}
-				/>
+				<StyledInput Input={handleInput} placehld='Cari Sebuah Negara Disini....' back1='0px 0px 10px 0.5px rgba(0, 0, 0, 0.75)' back2=' 0px 0px 10px 0.5px rgba(0, 120, 255, 0.7)'/>
+				
 			</div>
+
 			<Fade>
 				<div className='countries'>
 					{countries

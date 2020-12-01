@@ -3,6 +3,6 @@
 import Country from './Country';
 //import CountryDetail from './CountryDetail';
 //import Main from './Main';
-import Countries from './Countries';
+import StyledRegion from './Countries';
 
-export {  Country, Countries };
+export {  Country, StyledRegion };

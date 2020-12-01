@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import Fade from 'react-reveal/Fade';
 import { FilterDropdown } from './utils';
 import { Country } from '.';
+import StyledInput from '../element/textinput';
 import axios from 'axios';
 
 const regions = [
@@ -28,7 +28,7 @@ const regions = [
 	},
 ];
 
-const Countries = () => {
+const StyledRegion = (props) => {
 	const [countries, setCountries] = useState([]);
 	const [input, setInput] = useState('');
 	const [title, setTitle] = useState('Filter by Region');
@@ -36,31 +36,23 @@ const Countries = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			let axiosCountries = await axios.get(
-				'https://restcountries.eu/rest/v2/all'
+				`https://restcountries.eu/rest/v2/region/${props.match.params.regioncode}`
 			);
 
 			let filterData = axiosCountries.data.filter((country) => {
-				return country.name;
+				return country.name
 			});
 
-			localStorage.setItem('countries', JSON.stringify(filterData));
 
-			filterData.sort((a, b) => {
+			const newSortedArray = [...filterData].sort((a, b) => {
 				return a - b;
+				
 			});
-			setCountries((countries) => countries.concat(filterData));
+			setCountries((countries) => countries.concat(newSortedArray));
 		};
 
-		if (localStorage.countries) {
-			console.log('From local storage');
-			setCountries((countries) =>
-				countries.concat(JSON.parse(localStorage.getItem('countries')))
-			);
-		} else {
-			console.log('Fetch data and save on local storage');
 			fetchData();
-		}
-	}, []);
+	}, [props.match.params.regioncode]);
 
 	const handleInput = (e) => {
 		setInput(e.target.value);
@@ -77,22 +69,10 @@ const Countries = () => {
 	return (
 		<div className='home'>
 			<div className='home__row stack'>
-				<div className='home__search'>
-					<ion-icon name='search-outline'></ion-icon>
-					<input
-						type='text'
-						onInput={handleInput}
-						placeholder='Cari Sebuah Negara...'
-					/>
-				</div>
-
-				<FilterDropdown
-					title={title}
-					items={regions}
-					onSelectRegion={handleRegion}
-					onSelectTitle={handleTitle}
-				/>
+				<StyledInput Input={handleInput} placehld='Cari Sebuah Negara Disini....' back1='0px 0px 15px 1px rgba(0, 120, 255, 0.7)' back2='px 0px 10px 0.5px rgba(0, 120, 255, 0.7)'/>
 			</div>
+
+		
 			<Fade>
 				<div className='countries'>
 					{countries
@@ -121,4 +101,4 @@ const Countries = () => {
 	);
 };
 
-export default Countries;
+export default StyledRegion;

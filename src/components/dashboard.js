@@ -19,9 +19,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listitems';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import {CountryDetail} from './countrydetail';
-import {Countries} from './allcountries';
 import {CountriesStyled} from './styledcountries';
+import {StyledRegion} from './styledregions';
 import AboutUS from './AboutUS'
+import Button from './element/button'
 //import Chart from './Chart';
 //import Deposits from './Deposits';
 //import Orders from './Orders';
@@ -39,12 +40,11 @@ function Copyright() {
   );
 }
 
-const drawerWidth = 290;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: 'secondary',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -115,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    backgroundColor: '#3b63a3',
   },
   fixedHeight: {
     height: 240,
@@ -149,11 +150,6 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Daftar Negara di Dunia
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -177,11 +173,11 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="xl" className={classes.container}>
         <Switch>
-          <Route path="/Countries" component={Countries} />
           <Route path="/Country/:alpha2Code" component={CountryDetail} />
           <Route path="/CountryStyled" component={CountriesStyled} />
           <Route path="/AboutUS" component={AboutUS} />
-          <Redirect from='*' to='/Countries' />
+          <Route path="/Region/:regioncode" component={StyledRegion} />
+          <Redirect from='*' to='/CountryStyled' />
         </Switch>
 
           <Box pt={4}>

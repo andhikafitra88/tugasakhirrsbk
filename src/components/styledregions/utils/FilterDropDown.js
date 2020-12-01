@@ -17,7 +17,6 @@ const FilterDropdown = ({ title, items = [], multiSelect = false, onSelectRegion
 	const handleOnClick = (item) => {
 		onSelectRegion(item.value);
 		onSelectTitle(item.value);
-
 		if (!selection.some((current) => current.id === item.id)) {
 			if (!multiSelect) {
 				setSelection([item]);
